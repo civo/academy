@@ -1,0 +1,13 @@
+#ClusterRole and ClusterRoleBinding
+kubectl create sa demo -oyaml --dry-run=client
+kubectl create clusterrole clu1 --verb=get,watch,list --resource=pods,deployments,secrets,services --dry-run=client -oyaml
+kubectl create clusterrole clu1 --verb=get,watch,list --resource=pods,deployments,secrets,services --dry-run=client -oyaml
+
+
+#Role and Role Binding
+kubectl create sa demo2 --namespace=dev -oyaml --dry-run=client
+kubectl create role role1 --verb=get,watch,list --resource=pods,deployments,secrets,services --namespace dev --dry-run=client -oyaml 
+kubectl create rolebinding rb1 --role=role1 --serviceaccount=dev:demo2 --namespace=dev -oyaml --dry-run=client
+
+
+

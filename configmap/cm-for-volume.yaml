@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-for-volume
+  namespace: default
+data:
+  file1: val1
+  file2: val2

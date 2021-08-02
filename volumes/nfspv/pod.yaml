@@ -1,0 +1,18 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-using-nfs
+spec:
+  volumes:
+    - name: nfs-volume
+      persistentVolumeClaim:
+        claimName: pvc-nfs
+  containers:
+    - name: app
+      image: alpine
+      volumeMounts:
+        - name: nfs-volume
+          mountPath: /mnt
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do cat /proc/meminfo | grep MemFree >> /mnt/memory.txt; sleep 5; done"]
+      
